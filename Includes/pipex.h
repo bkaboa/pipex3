@@ -6,7 +6,7 @@
 /*   By: czang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 11:25:08 by czang             #+#    #+#             */
-/*   Updated: 2022/03/18 18:00:50 by czang            ###   ########lyon.fr   */
+/*   Updated: 2022/03/19 00:03:15 by czang            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,8 @@ typedef struct s_pipex
 	int	outfile;
 
 	char **path;
-	char **comd;
-	char **comd_path;
-	char **comd_and_args;
+	char **comd_arg;
+	char *comd_path;
 }t_pipex;
 
 typedef struct s_arg

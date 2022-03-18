@@ -6,7 +6,7 @@
 /*   By: czang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:00:24 by czang             #+#    #+#             */
-/*   Updated: 2022/03/18 15:03:13 by czang            ###   ########lyon.fr   */
+/*   Updated: 2022/03/19 00:43:16 by czang            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ bool	parse_pipex(t_pipex *pipex, t_arg arg)
 {
 	int		erno;
 
-	if (argument.argc < 3)
+	if (arg.ac < 3 || arg.ac > 4)
 		return (print_error(ERR_INPUT, NO_ERRNO, &arg));
 	pipex->infile = open((arg.av)[1], O_RDONLY);
 	if (pipex->infile < 0)
