@@ -6,7 +6,7 @@
 /*   By: czang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 11:25:08 by czang             #+#    #+#             */
-/*   Updated: 2022/03/19 00:03:15 by czang            ###   ########lyon.fr   */
+/*   Updated: 2022/03/20 02:17:41 by czang            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ typedef struct s_pipex
 
 typedef struct s_arg
 {
-	short argc;
-	char **argv;
-	char **envp;
+	short ac;
+	char **av;
+	char **env;
 }t_arg;
 /*
  *
@@ -77,7 +77,7 @@ char	**ft_split(const char *s, char set);
 /* small_include*/
 size_t	ft_strlen(const char *s);
 char	*ft_strjoin(const char *s1, const char *s2);
-char	*strdup(const char *s1);
+char	*ft_strdup(const char *s1);
 int		ft_strncmp(const char *s1, const char *s2, int len);
 
 /*
@@ -86,7 +86,8 @@ int		ft_strncmp(const char *s1, const char *s2, int len);
  */
 
 /* free_struct*/
-void	free_struct(void *strc);
+void	free_struct_arg(t_arg *arg);
+void	free_struct_pipex(t_pipex *pipex);
 /* free_db_pointer */
 void	free_db_pointer(void **pointer);
 
@@ -98,8 +99,9 @@ void	free_db_pointer(void **pointer);
 /* parse_function*/
 bool	parse_pipex(t_pipex *pipex, t_arg argument);
 /* fork_function */
-int		ft_fork(t_pipex *pipex, char cmd1, char cmd2);
+int		ft_fork(t_pipex *pipex, t_arg arg);
 /* command */
-bool	command(t_pipex *pipex, char *cmd);
+void	assign_comd(t_pipex *pipex, t_arg arg);
+bool	find_comd(t_pipex *pipex, int i);
 
 #endif
