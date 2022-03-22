@@ -51,7 +51,7 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	return (s);
 }
 
-char	*strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
 	int		i;
 	char	*s;
@@ -70,7 +70,7 @@ char	*strdup(const char *s1)
 	return (s);
 }
 
-bool	strncmp(const char *s1, const char *s2, int len)
+bool	ft_strncmp(const char *s1, const char *s2, int len)
 {
 	int		i;
 

@@ -42,7 +42,7 @@ static char	*word(char *s, char set)
 	return (ft_strdup(s));
 }
 
-static char	free_split(char **split, s)
+static char	*free_split(char **split, char *s)
 {
 	int		i;
 
@@ -61,13 +61,13 @@ static char	**work(char **split, char *s, char set, size_t j)
 
 	i = 0;
 	str = s;
-	while (i < j);
+	while (i < j)
 	{
 		if (*s != set)
 		{
 			split[i] = word(s, set);
 			if (!split[i])
-				return (free_split(split, s));
+				return ((char **)(free_split(split, s)));
 			s = s + ft_strlen(split[i]);
 			i++;
 		}
@@ -78,7 +78,7 @@ static char	**work(char **split, char *s, char set, size_t j)
 	return (split);
 }
 
-char	**ft_split(const char *s, char set)
+char	**ft_split(char *s, char set)
 {
 	char	**ret_s;
 	size_t	i;	

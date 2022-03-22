@@ -17,7 +17,7 @@ EXEC	=		pipex
 IPATH	=		Includes
 OPATH	=		.obj
 
-CFLAGS	=		-Werror -Wextra -Wall
+CFLAGS	=		-Werror -Wextra -Wall -g
 IFLAGS	=		-I $(IPATH)
 OBJS	=		$(addprefix $(OPATH)/, $(SRCS:.c=.o))
 
@@ -26,7 +26,7 @@ INC		=		$(addprefix $(IPATH)/, pipex.h)
 all:			$(EXEC)
 
 $(EXEC):		$(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@
+	@$(CC) $(CFLAGS) $^ -o $@
 
 re:				fclean all
 
@@ -35,9 +35,7 @@ $(OPATH)/%.o:	%.c $(INC) config/srcs.mk Makefile
 	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS)
+	@$(RM) $(OBJS)
 
 fclean:			clean
-	$(RM) $(EXEC)
-
-
+	@$(RM) $(EXEC)

@@ -14,10 +14,11 @@ PPATH	=		pipex_functions/
 UPATH	=		utils_functions/
 
 
-SRCS	=								\
-	$(addprefix $(PPATH), pipex.c)		\
-	$(addprefix $(PPATH), fork.c)		\
-	$(addprefix $(PPATH), command.c)	\
-	$(addprefix $(PPATH), parse.c)		\
-	$(addprefix $(UPATH), split.c)		\
-	$(addprefix $(UPATH), small_utils.c)
+SRCS	=				\
+	$(PPATH)pipex.c		\
+	$(PPATH)free.c		\
+	$(PPATH)fork.c		\
+	$(PPATH)command.c	\
+	$(PPATH)parse.c		\
+	$(UPATH)split.c		\
+	$(UPATH)small_utils.c

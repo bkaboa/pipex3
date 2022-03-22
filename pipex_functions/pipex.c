@@ -26,4 +26,3 @@ int	main(int argc, char **argv, char **envp)
 	free_struct_pipex(&pipex);
 	return (0);
 }
-

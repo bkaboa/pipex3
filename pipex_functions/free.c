@@ -22,7 +22,7 @@ void	free_struct_pipex(t_pipex *pipex)
 {
 	free_db_pointer((void **)pipex->path);
 	free_db_pointer((void **)pipex->comd_arg);
-	free(comd_path);
+	free(pipex->comd_path);
 }
 
 void	free_db_pointer(void **pointer)

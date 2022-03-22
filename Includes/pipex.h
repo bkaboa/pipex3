@@ -73,12 +73,12 @@ typedef struct s_arg
  ******************************	utils_pipex_functions	***
  */
 
-char	**ft_split(const char *s, char set);
+char	**ft_split(char *s, char set);
 /* small_include*/
 size_t	ft_strlen(const char *s);
 char	*ft_strjoin(const char *s1, const char *s2);
 char	*ft_strdup(const char *s1);
-int		ft_strncmp(const char *s1, const char *s2, int len);
+bool	ft_strncmp(const char *s1, const char *s2, int len);
 
 /*
  *
