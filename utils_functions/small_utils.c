@@ -6,7 +6,7 @@
 /*   By: czang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 12:35:01 by czang             #+#    #+#             */
-/*   Updated: 2022/03/20 01:53:04 by czang            ###   ########lyon.fr   */
+/*   Updated: 2022/03/22 18:57:32 by czang            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,10 @@ bool	ft_strncmp(const char *s1, const char *s2, int len)
 	int		i;
 
 	i = 0;
-	while (i <= len && s1[i] == s2[i])
-		if (i++ == len)
+	while (i < len && s1[i] == s2[i] && s1[i] && s2[i])
+	{
+		if (++i == len)
 			return (true);
+	}
 	return (false);
 }

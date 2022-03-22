@@ -6,7 +6,7 @@
 #    By: czang <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/20 00:12:04 by czang             #+#    #+#              #
-#    Updated: 2022/03/20 01:34:12 by czang            ###   ########lyon.fr    #
+#    Updated: 2022/03/22 18:43:46 by czang            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ EXEC	=		pipex
 IPATH	=		Includes
 OPATH	=		.obj
 
-CFLAGS	=		-Werror -Wextra -Wall -g
+CFLAGS	=		-Werror -Wextra -Wall -g3
 IFLAGS	=		-I $(IPATH)
 OBJS	=		$(addprefix $(OPATH)/, $(SRCS:.c=.o))
 

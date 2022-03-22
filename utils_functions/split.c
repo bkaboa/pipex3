@@ -6,7 +6,7 @@
 /*   By: czang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 12:18:49 by czang             #+#    #+#             */
-/*   Updated: 2022/03/20 02:23:24 by czang            ###   ########lyon.fr   */
+/*   Updated: 2022/03/22 17:59:33 by czang            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,18 @@
 static size_t	sentences_size(char *s, char set)
 {
 	size_t	i;
+	char	*tmp;
 
-	while (*s)
+	tmp = s;
+	i = 0;
+	while (*tmp)
 	{
-		if (*s != set)
+		if (*tmp != set)
 			i++;
-		while (*s != set)
-			s++;
-		while (*s == set)
-			s++;
+		while (*tmp != set)
+			tmp++;
+		while (*tmp == set)
+			tmp++;
 	}
 	free(s);
 	return (i);
