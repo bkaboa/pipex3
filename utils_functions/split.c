@@ -17,6 +17,7 @@ static size_t	sentences_size(char *s, char set)
 	size_t	i;
 	size_t	y;
 
+	y = 0;
 	i = 0;
 	while (s[i])
 	{
