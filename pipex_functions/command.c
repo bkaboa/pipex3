@@ -51,7 +51,6 @@ bool	find_comd(t_pipex *pipex, int i)
 		if (erno == 0)
 		{
 			free_db_pointer((void **)tmp_comd);
-			free(tmp_path);
 			return(true);
 		}
 		free(pipex->comd_path);
