@@ -32,7 +32,6 @@ static bool	find_path(t_pipex *pipex, t_arg arg)
 	while (ft_strncmp(*tmp, "PATH", 4) == false)
 		tmp++;
 	pipex->path = ft_split(*tmp, ':');
-	free_struct_arg(&arg);
 	if (!pipex->path)
 		return (false);
 	return (true);

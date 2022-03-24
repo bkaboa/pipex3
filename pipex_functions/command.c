@@ -31,7 +31,6 @@ void	assign_comd(t_pipex *pipex, t_arg arg)
 		if (pipex->comd_arg[i] == NULL)
 			--i;
 	}
-	free_struct_arg(&arg);
 }
 
 bool	find_comd(t_pipex *pipex, int i)
