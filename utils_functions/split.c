@@ -15,21 +15,20 @@
 static size_t	sentences_size(char *s, char set)
 {
 	size_t	i;
-	char	*tmp;
+	size_t	y;
 
-	tmp = s;
 	i = 0;
-	while (*tmp)
+	while (s[i])
 	{
-		if (*tmp != set)
-			i++;
-		while (*tmp != set)
-			tmp++;
-		while (*tmp == set)
-			tmp++;
+		if (s[i] == set)
+		{
+			y++;
+			while (s[i] == set)
+				i++;
+		}
+		i++;
 	}
-	free(s);
-	return (i);
+	return (y);
 }
 
 static char	*word(char *s, char set)
@@ -86,6 +85,7 @@ char	**ft_split(char *s, char set)
 	char	**ret_s;
 	size_t	i;	
 
+	s += 4;
 	i = sentences_size(s, set);
 	ret_s = malloc(sizeof(char *) * i + 1);
 	if (!ret_s)
