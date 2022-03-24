@@ -60,10 +60,8 @@ static char	*free_split(char **split, char *s)
 static char	**work(char **split, char *s, char set, size_t j)
 {
 	size_t	i;
-	char	*str;
 
 	i = 0;
-	str = s;
 	while (i < j)
 	{
 		if (*s != set)
@@ -77,7 +75,6 @@ static char	**work(char **split, char *s, char set, size_t j)
 		s++;
 	}
 	split[i] = NULL;
-	free(str);
 	return (split);
 }
 
