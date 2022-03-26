@@ -25,11 +25,16 @@ void	assign_comd(t_pipex *pipex, t_arg arg)
 
 	i = 0;
 	arg.ac -= 1;
-	while (++i < arg.ac)
+	pipex->comd_arg = malloc(sizeof(char *) * (arg.ac));
+	if (!pipex->comd_arg)
+		return ;
+	pipex->comd_arg[arg.ac - 1] = NULL;
+	while (i < arg.ac - 1)
 	{
-		pipex->comd_arg[i] = ft_strdup(arg.av[i]);
+		pipex->comd_arg[i] = ft_strdup(arg.av[i + 2]);
 		if (pipex->comd_arg[i] == NULL)
 			--i;
+		++i;
 	}
 }
 
@@ -56,6 +61,6 @@ bool	find_comd(t_pipex *pipex, int i)
 		free(pipex->comd_path);
 		tmp_path++;
 	}
-	free(tmp_comd);
+	free_db_pointer((void **)tmp_comd);
 	return (command_not_found(erno));
 }

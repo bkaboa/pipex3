@@ -35,7 +35,7 @@ $(OPATH)/%.o:	%.c $(INC) config/srcs.mk Makefile
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
-memoire:		$(CFLAGS) += $(FFLAGS)
+memoire:		CFLAGS += $(FFLAGS)
 memoire:		re
 
 clean:

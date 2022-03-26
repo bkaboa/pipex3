@@ -24,11 +24,12 @@ static size_t	sentences_size(char *s, char set)
 		if (s[i] == set)
 		{
 			y++;
-			while (s[i] == set)
+			while (s[i] == set && s[i])
 				i++;
 		}
 		i++;
 	}
+	y++;
 	return (y);
 }
 
@@ -45,15 +46,15 @@ static char	*word(char *s, char set)
 	return (ft_strdup(s));
 }
 
-static char	*free_split(char **split, char *s)
+static char	*free_split(char ***split, char **s)
 {
 	int		i;
 
 	i = 0;
-	while (split[i])
-		free(split[i++]);
-	free(split);
-	free(s);
+	while (*split[i])
+		free(*split[i++]);
+	free(*split);
+	free(*s);
 	return (NULL);
 }
 
@@ -68,7 +69,7 @@ static char	**work(char **split, char *s, char set, size_t j)
 		{
 			split[i] = word(s, set);
 			if (!split[i])
-				return ((char **)(free_split(split, s)));
+				return ((char **)(free_split(&split, &s)));
 			s = s + ft_strlen(split[i]);
 			i++;
 		}
@@ -81,11 +82,11 @@ static char	**work(char **split, char *s, char set, size_t j)
 char	**ft_split(char *s, char set)
 {
 	char	**ret_s;
-	size_t	i;	
+	size_t	i;
 
-	s += 4;
+	s += 5;
 	i = sentences_size(s, set);
-	ret_s = malloc(sizeof(char *) * i + 1);
+	ret_s = malloc(sizeof(char *) * (i + 1));
 	if (!ret_s)
 		return (NULL);
 	ret_s[i] = NULL;
