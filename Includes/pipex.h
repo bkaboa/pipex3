@@ -30,6 +30,7 @@
 typedef struct s_pipex
 {
 	pid_t id_process;
+	pid_t id_process2;
 
 	int pipe[2];
 
@@ -79,6 +80,7 @@ size_t	ft_strlen(const char *s);
 char	*ft_strjoin(const char *s1, const char *s2);
 char	*ft_strdup(const char *s1);
 bool	ft_strncmp(const char *s1, const char *s2, int len);
+char	*ft_substr(const char *s1, char set);
 
 /*
  *

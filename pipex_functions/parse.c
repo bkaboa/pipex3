@@ -27,15 +27,31 @@ static bool	print_error(char *err, int erno)
 static bool	find_path(t_pipex *pipex, t_arg arg)
 {
 	char	**tmp;
+	size_t	i;
 
+	i = 0;
 	tmp = arg.env;
 	while (ft_strncmp(*tmp, "PATH", 4) == false)
 		tmp++;
 	pipex->path = ft_split(*tmp, ':');
 	if (!pipex->path)
 		return (false);
+	while (pipex->path[i])
+	{
+		pipex->path[i] = ft_strjoin(pipex->path[i], "/");
+		i++;
+	}
 	return (true);
 }
+
+static void	close_and_wait(t_pipex *pipex)
+{
+	close(pipex->pipe[0]);
+	close(pipex->pipe[1]);
+	close(pipex->infile);
+	close(pipex->outfile);
+	waitpid(pipex->id_process2, NULL, 0);
+}	
 
 bool	parse_pipex(t_pipex *pipex, t_arg arg)
 {
@@ -56,5 +72,6 @@ bool	parse_pipex(t_pipex *pipex, t_arg arg)
 		return (print_error(ERR_PATH, NO_ERRNO));
 	if (ft_fork(pipex, arg) == false)
 		return (print_error(ERR_FORK, pipex->id_process));
+	close_and_wait(pipex);
 	return (true);
 }	

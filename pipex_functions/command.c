@@ -12,11 +12,11 @@
 
 #include "../Includes/pipex.h"
 
-static bool	command_not_found(int erno)
+static short	command_not_found(int erno, char *s)
 {
-	perror(ERR_CMD);
+	perror(s);
 	strerror(erno);
-	return (false);
+	return (-1);
 }
 
 void	assign_comd(t_pipex *pipex, t_arg arg)
@@ -38,29 +38,49 @@ void	assign_comd(t_pipex *pipex, t_arg arg)
 	}
 }
 
+static short	spc_in_cmd(char *s)
+{
+	int		i;
+	int		y;
+	int		errno;
+
+	errno = EINVAL;
+	y = 0;
+	i = 0;
+	while (s[i])
+		if (s[i++] == ' ')
+			y++;
+	if (y == 1)
+		return (true);
+	if (y > 1)
+		return (command_not_found(errno, s));
+	return (false);
+}
+
 bool	find_comd(t_pipex *pipex, int i)
 {
-	char	**tmp_path;
-	char	**tmp_comd;
-	int		erno;
+	int		errno;
+	char	*comd;
+	size_t	y;
 
-	tmp_comd = ft_split(pipex->comd_arg[i], ' ');
-	tmp_path = pipex->path;
-	if (pipex->comd_path)
-		free(pipex->comd_path);
-	while (*tmp_path)
+	y = 0;
+	if (spc_in_cmd(pipex->comd_arg[i]) == -1)
+		return (false);
+	else if (spc_in_cmd(pipex->comd_arg[i]) == true)
+		comd = ft_substr(pipex->comd_arg[i], ' ');
+	else
+		comd = ft_strdup(pipex->comd_arg[i]);
+	while (pipex->path[y])
 	{
-		pipex->comd_path = ft_strjoin(*tmp_path, "/");
-		pipex->comd_path = ft_strjoin(pipex->comd_path, tmp_comd[0]);
-		erno = access(pipex->comd_path, 0);
-		if (erno == 0)
+		pipex->comd_path = ft_strjoin(pipex->path[y], comd);
+		errno = access(pipex->comd_path, 0);
+		if (errno >= 0)
 		{
-			free_db_pointer((void **)tmp_comd);
-			return(true);
+			return (true);
 		}
+		y++;
 		free(pipex->comd_path);
-		tmp_path++;
+
 	}
-	free_db_pointer((void **)tmp_comd);
-	return (command_not_found(erno));
+	return (command_not_found(errno, "command_not_found "));
 }

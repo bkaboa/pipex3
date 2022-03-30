@@ -27,13 +27,10 @@ void	free_struct_pipex(t_pipex *pipex)
 
 void	free_db_pointer(void **pointer)
 {
-	void	**tmp;
+	int		i;
 
-	tmp = pointer;
-	while (*tmp)
-	{
-		free(*tmp);
-		tmp++;
-	}
+	i = 0;
+	while (pointer[i])
+		free(pointer[i++]);
 	free(pointer);
 }

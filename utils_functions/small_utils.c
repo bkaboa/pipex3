@@ -82,3 +82,23 @@ bool	ft_strncmp(const char *s1, const char *s2, int len)
 	}
 	return (false);
 }
+
+char	*ft_substr(const char *s1, char set)
+{
+	int		i;
+	char	*s;
+
+	i = 0;
+	while (s1[i] && s1[i] != set)
+		i++;
+	s = malloc(sizeof(char) * i);
+	i = 0;
+	while (s1[i] && s1[i] != set)
+	{
+		s[i] = s1[i];
+		i++;
+	}
+	return (s);
+}
+
+

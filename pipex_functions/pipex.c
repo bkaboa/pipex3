@@ -22,7 +22,10 @@ int	main(int argc, char **argv, char **envp)
 	argument.av = argv;
 	argument.env = envp;
 	if (parse_pipex(&pipex, argument) == false)
+	{
+		free_struct_pipex(&pipex);
 		return (1);
+	}
 	free_struct_pipex(&pipex);
 	return (0);
 }

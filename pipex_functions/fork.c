@@ -36,20 +36,24 @@ int	ft_fork(t_pipex *pipex, t_arg arg)
 	assign_comd(pipex, arg);
 	if (find_comd(pipex, i) == true)
 	{
-		dprintf (1, "\n\n %s \n\n", pipex->comd_path);
+		dprintf(1, "\n\n\n %s \n\n\n", pipex->comd_path);
 		pipex->id_process = fork();
 		if (pipex->id_process < 0)
 			return (pipex->id_process);
 		if (pipex->id_process == 0)
 			return (child1(pipex, arg));
 	}
+	waitpid(pipex->id_process, NULL, 0);
+	free(pipex->comd_path);
+	i++;
 	if (find_comd(pipex, i) == true)
 	{
-		pipex->id_process = fork();
+	dprintf (1, "\n\n %s \n\n", pipex->comd_path);
+		pipex->id_process2 = fork();
 		if (pipex->id_process < 0)
 			return (pipex->id_process);
 		if (pipex->id_process == 0)
-		return (child2(pipex, arg));
+			return (child2(pipex, arg));
 	}
 	return (0);
 }
